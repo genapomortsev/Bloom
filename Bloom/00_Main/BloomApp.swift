@@ -12,6 +12,7 @@ struct BloomApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(MockDatabase.shared)
         }
     }
 }
