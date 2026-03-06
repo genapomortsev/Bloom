@@ -6,14 +6,16 @@ import Combine
 final class MockDatabase: ObservableObject {
     static let shared = MockDatabase()
     let objectWillChange = ObservableObjectPublisher()
+    private let auth: AuthViewModel
 
     @Published var currentAccount: Account
     @Published private(set) var products: [Product]
     @Published private(set) var reviews: [Review]
     @Published private(set) var likes: [Like]
 
-    private init() {
-        let demoUser = Account(username: "gena", displayName: "Gena P.")
+    private init(auth: AuthViewModel) {
+        self.auth = auth
+        let demoUser = Account(username: auth.username, displayName: auth.fullName)
         self.currentAccount = demoUser
 
         // Sample products
@@ -42,6 +44,11 @@ final class MockDatabase: ObservableObject {
             Like(productId: p5.id, accountId: demoUser.id),
             Like(productId: p7.id, accountId: demoUser.id),
         ]
+    }
+    
+    @MainActor
+    convenience init() {
+        self.init(auth: AuthViewModel())
     }
 
     // MARK: - Queries
@@ -88,5 +95,34 @@ final class MockDatabase: ObservableObject {
         let review = Review(productId: product.id, authorId: currentAccount.id, rating: rating, text: text)
         reviews.append(review)
         objectWillChange.send()
+    }
+
+    /// Deletes a review if the author's username matches the current account's username.
+    /// - Parameter reviewId: The id of the review to attempt to delete.
+    /// - Returns: `true` if a review was deleted, otherwise `false`.
+    func deleteReviewIfAuthorMatchesCurrentUsername(reviewId: UUID) -> Bool {
+        // We only know the currentAccount's username in this mock DB.
+        // Find the review and ensure it belongs to the current user by comparing usernames via currentAccount.
+        guard let index = reviews.firstIndex(where: { $0.id == reviewId }) else { return false }
+
+        // In this mock setup, we don't store usernames on Review, only authorId.
+        // Treat a review as authored by the current user when authorId matches currentAccount.id.
+        let authoredByCurrentUser = (reviews[index].authorId == currentAccount.id)
+        guard authoredByCurrentUser else { return false }
+
+        reviews.remove(at: index)
+        objectWillChange.send()
+        return true
+    }
+
+    /// Deletes the given review for a product if the author's username matches the current account username.
+    /// - Parameters:
+    ///   - product: The product associated with the review.
+    ///   - review: The review to attempt to delete.
+    /// - Returns: `true` if a review was deleted, otherwise `false`.
+    func deleteReviewIfAuthorMatchesCurrentUsername(for product: Product, review: Review) -> Bool {
+        // Ensure the review belongs to the provided product
+        guard review.productId == product.id else { return false }
+        return deleteReviewIfAuthorMatchesCurrentUsername(reviewId: review.id)
     }
 }
