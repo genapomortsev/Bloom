@@ -6,13 +6,35 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E6DF9DB52F5B792700F5A822 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = E6DF9DB42F5B792700F5A822 /* Auth */; };
+		E6DF9DB72F5B792700F5A822 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = E6DF9DB62F5B792700F5A822 /* Functions */; };
+		E6DF9DB92F5B792700F5A822 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = E6DF9DB82F5B792700F5A822 /* PostgREST */; };
+		E6DF9DBB2F5B792700F5A822 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = E6DF9DBA2F5B792700F5A822 /* Realtime */; };
+		E6DF9DBD2F5B792700F5A822 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = E6DF9DBC2F5B792700F5A822 /* Storage */; };
+		E6DF9DBF2F5B792700F5A822 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = E6DF9DBE2F5B792700F5A822 /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		E6E8E7D42F57953A003C13FC /* Bloom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bloom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E65C060E2F5B939F00BFF858 /* Exceptions for "Bloom" folder in "Bloom" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E6E8E7D32F57953A003C13FC /* Bloom */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E6E8E7D62F57953A003C13FC /* Bloom */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E65C060E2F5B939F00BFF858 /* Exceptions for "Bloom" folder in "Bloom" target */,
+			);
 			path = Bloom;
 			sourceTree = "<group>";
 		};
@@ -23,16 +45,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6DF9DB92F5B792700F5A822 /* PostgREST in Frameworks */,
+				E6DF9DB72F5B792700F5A822 /* Functions in Frameworks */,
+				E6DF9DBF2F5B792700F5A822 /* Supabase in Frameworks */,
+				E6DF9DB52F5B792700F5A822 /* Auth in Frameworks */,
+				E6DF9DBD2F5B792700F5A822 /* Storage in Frameworks */,
+				E6DF9DBB2F5B792700F5A822 /* Realtime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E6DF9DB32F5B792700F5A822 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E6E8E7CB2F57953A003C13FC = {
 			isa = PBXGroup;
 			children = (
 				E6E8E7D62F57953A003C13FC /* Bloom */,
+				E6DF9DB32F5B792700F5A822 /* Frameworks */,
 				E6E8E7D52F57953A003C13FC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +101,12 @@
 			);
 			name = Bloom;
 			packageProductDependencies = (
+				E6DF9DB42F5B792700F5A822 /* Auth */,
+				E6DF9DB62F5B792700F5A822 /* Functions */,
+				E6DF9DB82F5B792700F5A822 /* PostgREST */,
+				E6DF9DBA2F5B792700F5A822 /* Realtime */,
+				E6DF9DBC2F5B792700F5A822 /* Storage */,
+				E6DF9DBE2F5B792700F5A822 /* Supabase */,
 			);
 			productName = Bloom;
 			productReference = E6E8E7D42F57953A003C13FC /* Bloom.app */;
@@ -94,6 +136,9 @@
 			);
 			mainGroup = E6E8E7CB2F57953A003C13FC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E6DF9DAB2F5B770400F5A822 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E6E8E7D52F57953A003C13FC /* Products */;
 			projectDirPath = "";
@@ -256,6 +301,7 @@
 				DEVELOPMENT_TEAM = Z8APYGX63G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bloom/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -288,6 +334,7 @@
 				DEVELOPMENT_TEAM = Z8APYGX63G;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bloom/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -332,6 +379,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E6DF9DAB2F5B770400F5A822 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E6DF9DB42F5B792700F5A822 /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6DF9DAB2F5B770400F5A822 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		E6DF9DB62F5B792700F5A822 /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6DF9DAB2F5B770400F5A822 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		E6DF9DB82F5B792700F5A822 /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6DF9DAB2F5B770400F5A822 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		E6DF9DBA2F5B792700F5A822 /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6DF9DAB2F5B770400F5A822 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		E6DF9DBC2F5B792700F5A822 /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6DF9DAB2F5B770400F5A822 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		E6DF9DBE2F5B792700F5A822 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E6DF9DAB2F5B770400F5A822 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E6E8E7CC2F57953A003C13FC /* Project object */;
 }

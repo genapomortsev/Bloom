@@ -1,5 +1,19 @@
+//
+//  00_Helper_Functions.swift
+//  Bloom
+//
+//  Created by Гена Поморцев on 06/03/2026.
+//
+
 import Foundation
 import Security
+import Foundation
+import Supabase
+
+let supabase = SupabaseClient(
+  supabaseURL: URL(string: "https://bugsthxlfoxxzgkzzukk.supabase.co")!,
+  supabaseKey: "sb_publishable_I7SW0ZHAXHRaVl6TfFEEmA_eNJZKv8U"
+)
 
 struct KeychainHelper {
     static func savePassword(_ password: String, account: String, service: String = Bundle.main.bundleIdentifier ?? "AppService") throws {

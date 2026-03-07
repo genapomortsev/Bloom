@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Supabase
 
 struct ContentView: View {
-    @EnvironmentObject var auth: AuthViewModel
+    @State var isAuthenticated = false
     @State private var selectedTab = 0
     var body: some View {
         Group {
-            if auth.isLoggedIn {
+            if isAuthenticated {
                 TabView(selection: $selectedTab) {
                     Tab("Feed", systemImage: "newspaper", value: 0) {
                         FeedView()
@@ -38,12 +39,18 @@ struct ContentView: View {
                 AuthView()
             }
         }
+        .task {
+            for await state in supabase.auth.authStateChanges {
+                if [.initialSession, .signedIn, .signedOut].contains(state.event) {
+                    isAuthenticated = state.session != nil
+                }
+            }
+        }
     }
 }
 
 #Preview {
     ContentView()
-        .environmentObject(AuthViewModel())
         .environmentObject(MockDatabase.shared)
 }
 

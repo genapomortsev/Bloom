@@ -148,24 +148,6 @@ private struct ReviewRow: View {
             Text(review.text)
         }
         .padding(.vertical, 4)
-        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-            if review.authorId == db.currentAccount.id {
-                Button(role: .destructive) {
-                    _ = db.deleteReviewIfAuthorMatchesCurrentUsername(for: productForSwipeContext, review: review)
-                } label: {
-                    Label("Delete", systemImage: "trash")
-                }
-            }
-        }
-    }
-
-    private var productForSwipeContext: Product {
-        // Resolve the product for this review; fall back to a dummy name if missing
-        if let prod = db.products.first(where: { $0.id == review.productId }) {
-            return prod
-        }
-        // Fallback product in unlikely case of mismatch; id must match review.productId to pass guard in delete method
-        return Product(id: review.productId, name: "Unknown", brand: "", category: "", description: "")
     }
 
     private var authorName: String {
